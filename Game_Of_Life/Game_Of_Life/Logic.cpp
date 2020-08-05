@@ -2,20 +2,15 @@
 
 void Engine::Logic::Draw_Objects()
 {
-	std::lock_guard<std::mutex> mtx1_lock(Sheep_Resources);
+	Sheep_Resources.lock();
+	for (typename std::unordered_set< std::unique_ptr<Creature::Animal*>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
 	{
-		std::lock_guard<std::mutex> mtx2_lock(Wolf_Resources);
-		{
-			//for (typename std::unordered_set<std::shared_ptr<Creature::Animal>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
-			//for (typename std::unordered_set<Creature::Animal*>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
-			for (typename std::unordered_set< std::unique_ptr<Creature::Animal*>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
-			{
-				//Draw.Draw_Object((*set_iter)->Get_Pos_X(), (*set_iter)->Get_Pos_Y(), 'o');
-				Draw.Draw_Object((*(set_iter)->get())->Get_Pos_X(), (*(set_iter)->get())->Get_Pos_Y(), 'o');
-			}
-			Draw.Draw_Object(m_Wolf->Get_Pos_X(), m_Wolf->Get_Pos_Y(), '>');
-		}
+		Draw.Draw_Object((*(set_iter)->get())->Get_Pos_X(), (*(set_iter)->get())->Get_Pos_Y(), 'o');
 	}
+	Sheep_Resources.unlock();
+	Wolf_Resources.lock();
+	Draw.Draw_Object(m_Wolf->Get_Pos_X(), m_Wolf->Get_Pos_Y(), '>');
+	Wolf_Resources.unlock();
 }
 
 void Engine::Logic::Key()
@@ -67,9 +62,7 @@ void Engine::Logic::Add_Sheep()
 	std::uniform_int_distribution<int> uid_width(0, this->Draw.Get_Width() - 1);
 	std::uniform_int_distribution<int> uid_height(0, this->Draw.Get_Height() - 1);
 	Sheep_Resources.lock();
-	//this->m_Sheeps.insert(std::move(std::make_shared<Creature::Animal>((new Creature::Sheep("Dolly", uid_width(rng), uid_height(rng), "Sheep", false)))));
 	this->m_Sheeps.insert(std::move(std::make_unique<Creature::Animal*>((new Creature::Sheep("Dolly", uid_width(rng), uid_height(rng), "Sheep", false)))));
-	//m_Sheeps.insert(new Creature::Sheep("Dolly", uid_width(rng), uid_height(rng), "Sheep", false));
 	Sheep_Resources.unlock();
 }
 
@@ -78,10 +71,9 @@ void Engine::Logic::Game_Draw()
 	while (is_not_end)
 	{
 		Draw_Objects();
-		//Draw.Draw_Object(50, 50, printf_s("Current sheep amount %d", this->m_Sheeps.size()));
-		//Draw.Draw_Object(50, 50, std::printf("Current sheep amount %d", this->m_Sheeps.size()));
-		//Draw.Draw_Object(5, 5, std::printf);
+		Sheep_Resources.lock();
 		Draw.Draw_Object(30, 15, "Current sheep amount %d", this->m_Sheeps.size());
+		Sheep_Resources.unlock();
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 }
@@ -127,8 +119,6 @@ void Engine::Logic::Diffusion()
 void Engine::Logic::Collision()
 {
 	Sheep_Resources.lock();
-	//for (typename std::unordered_set<std::shared_ptr<Creature::Animal>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
-	//for (typename std::unordered_set<Creature::Animal*>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
 	for (typename std::unordered_set<std::unique_ptr<Creature::Animal*>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
 	{
 		if ((**set_iter)->Get_Pos_X() == this->m_Wolf->Get_Pos_X() && (**set_iter)->Get_Pos_Y() == this->m_Wolf->Get_Pos_Y())
@@ -148,10 +138,10 @@ Engine::Logic::Logic(const int32_t width, const int32_t height) :
 
 Engine::Logic::Logic(const Logic& Object) :
 	Draw(Object.Draw),
-	Key_Event(Object.Key_Event)
+	Key_Event(Object.Key_Event),
+	m_Wolf(new Creature::Wolf)
 {
-	m_Wolf = new Creature::Wolf;
-	m_Wolf = Object.m_Wolf;
+	this->m_Wolf = Object.m_Wolf;
 }
 
 void Engine::Logic::Run_Game()

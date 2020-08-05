@@ -47,27 +47,6 @@ namespace Creature
 		virtual ~Animal();
 	};
 
-	struct Animal_Hash
-	{
-		const std::size_t operator()(const Animal* ptr) const
-		//const std::size_t operator()(const std::unique_ptr<Animal, std::default_delete<Animal>> ptr) const
-		{
-			return ptr->Get_Pos_X();
-		}
-	};
-
-	struct Animal_Equal
-	{
-		bool operator()(const Animal* lhs, const Animal* rhs) const
-		{
-			if (lhs->Get_Pos_X() == rhs->Get_Pos_X() && lhs->Get_Pos_Y() == rhs->Get_Pos_Y())
-			{
-				return true;
-			}
-			return false;
-		}
-	};
-
 }
 
 #endif /* _ANIMAL_HPP_ */

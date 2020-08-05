@@ -48,31 +48,6 @@ Creature::Sheep& Creature::Sheep::operator=(const Sheep& rhs)
 	return *this;
 }
 
-//const std::string& Creature::Sheep::Get_Breed() const
-//{
-//	return Animal::Get_Breed();
-//}
-//
-//const bool Creature::Sheep::Get_Is_Predator() const
-//{
-//	return Animal::Get_Is_Predator();
-//}
-//
-//const std::string& Creature::Sheep::Get_Name() const
-//{
-//	return Creature::Get_Name();
-//}
-//
-//const int32_t Creature::Sheep::Get_Pos_X() const
-//{
-//	return Creature::Get_Pos_X();
-//}
-//
-//const int32_t Creature::Sheep::Get_Pos_Y() const
-//{
-//	return Creature::Get_Pos_Y();
-//}
-
 Creature::Sheep::~Sheep()
 {
 
