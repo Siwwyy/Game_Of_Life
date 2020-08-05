@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+#include <functional>
 #include <cstdint>
 
 #include "Engine.hpp"
@@ -30,6 +31,7 @@ namespace Engine
 
 		void Draw_Area();
 		void Draw_Object(const int32_t pos_x, const int32_t pos_y, const char sign);
+		void Draw_Object(const int32_t pos_x, const int32_t pos_y, const std::string & str, const std::size_t size);
 		void Clear_Object(const int32_t pos_x, const int32_t pos_y);
 		void Clear_Area() const;
 

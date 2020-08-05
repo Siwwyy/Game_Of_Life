@@ -6,9 +6,12 @@ void Engine::Logic::Draw_Objects()
 	{
 		std::lock_guard<std::mutex> mtx2_lock(Wolf_Resources);
 		{
-			for (typename std::unordered_set<Creature::Animal*>::const_iterator vec_iter = this->m_Sheeps.begin(); vec_iter != this->m_Sheeps.end(); ++vec_iter)
+			//for (typename std::unordered_set<std::shared_ptr<Creature::Animal>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
+			//for (typename std::unordered_set<Creature::Animal*>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
+			for (typename std::unordered_set< std::unique_ptr<Creature::Animal*>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
 			{
-				Draw.Draw_Object((*vec_iter)->Get_Pos_X(), (*vec_iter)->Get_Pos_Y(), 'o');
+				//Draw.Draw_Object((*set_iter)->Get_Pos_X(), (*set_iter)->Get_Pos_Y(), 'o');
+				Draw.Draw_Object((*(set_iter)->get())->Get_Pos_X(), (*(set_iter)->get())->Get_Pos_Y(), 'o');
 			}
 			Draw.Draw_Object(m_Wolf->Get_Pos_X(), m_Wolf->Get_Pos_Y(), '>');
 		}
@@ -64,7 +67,9 @@ void Engine::Logic::Add_Sheep()
 	std::uniform_int_distribution<int> uid_width(0, this->Draw.Get_Width() - 1);
 	std::uniform_int_distribution<int> uid_height(0, this->Draw.Get_Height() - 1);
 	Sheep_Resources.lock();
-	m_Sheeps.insert(new Creature::Sheep("Dolly", uid_width(rng), uid_height(rng), "Sheep", false));
+	//this->m_Sheeps.insert(std::move(std::make_shared<Creature::Animal>((new Creature::Sheep("Dolly", uid_width(rng), uid_height(rng), "Sheep", false)))));
+	this->m_Sheeps.insert(std::move(std::make_unique<Creature::Animal*>((new Creature::Sheep("Dolly", uid_width(rng), uid_height(rng), "Sheep", false)))));
+	//m_Sheeps.insert(new Creature::Sheep("Dolly", uid_width(rng), uid_height(rng), "Sheep", false));
 	Sheep_Resources.unlock();
 }
 
@@ -73,6 +78,10 @@ void Engine::Logic::Game_Draw()
 	while (is_not_end)
 	{
 		Draw_Objects();
+		//Draw.Draw_Object(50, 50, printf_s("Current sheep amount %d", this->m_Sheeps.size()));
+		//Draw.Draw_Object(50, 50, std::printf("Current sheep amount %d", this->m_Sheeps.size()));
+		//Draw.Draw_Object(5, 5, std::printf);
+		Draw.Draw_Object(30, 15, "Current sheep amount %d", this->m_Sheeps.size());
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 }
@@ -118,11 +127,13 @@ void Engine::Logic::Diffusion()
 void Engine::Logic::Collision()
 {
 	Sheep_Resources.lock();
-	for (typename std::unordered_set<Creature::Animal*>::const_iterator vec_iter = this->m_Sheeps.begin(); vec_iter != this->m_Sheeps.end(); ++vec_iter)
+	//for (typename std::unordered_set<std::shared_ptr<Creature::Animal>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
+	//for (typename std::unordered_set<Creature::Animal*>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
+	for (typename std::unordered_set<std::unique_ptr<Creature::Animal*>>::const_iterator set_iter = this->m_Sheeps.begin(); set_iter != this->m_Sheeps.end(); ++set_iter)
 	{
-		if ((*vec_iter)->Get_Pos_X() == this->m_Wolf->Get_Pos_X() && (*vec_iter)->Get_Pos_Y() == this->m_Wolf->Get_Pos_Y())
+		if ((**set_iter)->Get_Pos_X() == this->m_Wolf->Get_Pos_X() && (**set_iter)->Get_Pos_Y() == this->m_Wolf->Get_Pos_Y())
 		{
-			vec_iter = this->m_Sheeps.erase(vec_iter);
+			set_iter = this->m_Sheeps.erase(set_iter);
 		}
 	}
 	Sheep_Resources.unlock();
@@ -130,10 +141,9 @@ void Engine::Logic::Collision()
 
 Engine::Logic::Logic(const int32_t width, const int32_t height) :
 	Draw(width, height),
-	Key_Event(),
-	m_Wolf(new Creature::Wolf("Wolf", static_cast<int32_t>(0), static_cast<int32_t>(this->Draw.Get_Height() / 2), "Wolf", true))
+	Key_Event()
 {
-
+	m_Wolf = new Creature::Wolf("Wolf", static_cast<int32_t>(0), static_cast<int32_t>(this->Draw.Get_Height() / 2), "Wolf", true);
 }
 
 Engine::Logic::Logic(const Logic& Object) :
@@ -160,4 +170,5 @@ void Engine::Logic::Run_Game()
 Engine::Logic::~Logic()
 {
 	this->m_Sheeps.clear();
+	delete m_Wolf;
 }

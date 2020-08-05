@@ -35,7 +35,10 @@ namespace Engine
 		std::random_device rand{};
 
 
-		std::unordered_set< Creature::Animal*, Creature::Animal_Hash, Creature::Animal_Equal >m_Sheeps;
+		//std::unordered_set< Creature::Animal*, Creature::Animal_Hash, Creature::Animal_Equal >m_Sheeps;
+		//std::unordered_set< std::unique_ptr<Creature::Animal>, Creature::Animal_Hash, Creature::Animal_Equal >m_Sheeps;
+		std::unordered_set< std::unique_ptr<Creature::Animal*>>m_Sheeps;
+		//std::unordered_set< std::shared_ptr<Creature::Animal>, Creature::Animal_Hash, Creature::Animal_Equal >m_Sheeps;
 
 		void Draw_Objects();
 		void Key();

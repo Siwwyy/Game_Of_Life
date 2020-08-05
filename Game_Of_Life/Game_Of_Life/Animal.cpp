@@ -79,35 +79,11 @@ Creature::Animal& Creature::Animal::operator=(const Animal& rhs)
 	if (this != std::addressof(rhs))
 	{
 		Creature::Creature::operator=(rhs);
-		//try 
-		//{
-		//	this->m_breed = (dynamic_cast<const Animal&>(rhs)).m_breed;
-		//	this->m_is_predator = (dynamic_cast<const Animal&>(rhs)).m_is_predator;
-		//}
-		//catch (std::bad_cast) 
-		//{
-		//	//
-		//}
 		this->m_breed = rhs.m_breed;
 		this->m_is_predator = rhs.m_is_predator;
 	}
 	return *this;
 }
-
-//bool Creature::Animal::operator==(const Animal& rhs)
-//{
-//	return Creature::operator==(rhs);
-//}
-//
-//const std::int32_t Creature::Animal::operator()(const Animal& rhs)
-//{
-//	return Creature::operator()(rhs);
-//}
-
-//bool Creature::Animal::operator==(const Animal& rhs)
-//{
-//	return Creature::operator==(rhs);
-//}
 
 Creature::Animal::~Animal()
 {

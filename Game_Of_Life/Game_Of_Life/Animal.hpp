@@ -18,7 +18,6 @@ namespace Creature
 		std::string m_breed;
 		bool m_is_predator;
 
-		virtual ~Animal();
 	public:
 		virtual void Set_Breed(const std::string& breed);
 		virtual void Set_Is_Predator(const bool is_predator);
@@ -44,11 +43,14 @@ namespace Creature
 		virtual void Move_Downwards() = 0;
 
 		Animal& operator=(const Animal& rhs);
+
+		virtual ~Animal();
 	};
 
 	struct Animal_Hash
 	{
 		const std::size_t operator()(const Animal* ptr) const
+		//const std::size_t operator()(const std::unique_ptr<Animal, std::default_delete<Animal>> ptr) const
 		{
 			return ptr->Get_Pos_X();
 		}

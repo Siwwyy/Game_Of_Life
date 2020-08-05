@@ -65,6 +65,12 @@ void Engine::Drawing::Draw_Object(const int32_t pos_x, const int32_t pos_y, cons
 	}
 }
 
+void Engine::Drawing::Draw_Object(const int32_t pos_x, const int32_t pos_y, const std::string& str, const std::size_t size)
+{
+	Set_Cursor_Position(static_cast<SHORT>(pos_x), static_cast<SHORT>(pos_y));
+	std::printf(str.c_str(), size);
+}
+
 void Engine::Drawing::Clear_Object(const int32_t pos_x, const int32_t pos_y)
 {
 	if ((pos_x >= 0 && pos_x < this->m_width) && (pos_y >= 0 && pos_y < this->m_height))
