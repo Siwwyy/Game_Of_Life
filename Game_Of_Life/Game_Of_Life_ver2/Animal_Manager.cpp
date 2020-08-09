@@ -1,13 +1,13 @@
 #include "Animal_Manager.hpp"
 #include "Animal.hpp"
 
-Creature::Animal_Manager::Animal_Manager():
+Creature::Animal_Manager::Animal_Manager() :
 	Animal_Vector()
 {
 
 }
 
-Creature::Animal_Manager::Animal_Manager(const Animal_Manager& Object):
+Creature::Animal_Manager::Animal_Manager(const Animal_Manager& Object) :
 	Animal_Vector(Object.Animal_Vector)
 {
 
@@ -45,7 +45,7 @@ void Creature::Animal_Manager::Remove_Animal(Animal& Object)
 
 void Creature::Animal_Manager::Show_Animal() const
 {
-	for (Animal* const My_Animal: this->Animal_Vector)
+	for (Animal* const My_Animal : this->Animal_Vector)
 	{
 		My_Animal->Print();
 	}

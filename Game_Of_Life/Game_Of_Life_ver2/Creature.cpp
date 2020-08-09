@@ -59,8 +59,8 @@ Creature::Creature::Creature(const Creature& Object) :
 	m_pos_x(Object.m_pos_x),
 	m_pos_y(Object.m_pos_y)
 {
-}
 
+}
 
 void Creature::Creature::Print() const
 {
