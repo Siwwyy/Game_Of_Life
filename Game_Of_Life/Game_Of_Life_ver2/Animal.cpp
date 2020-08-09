@@ -62,6 +62,15 @@ Creature::Animal& Creature::Animal::operator=(const Animal& rhs)
 	return *this;
 }
 
+bool Creature::Animal::operator==(const Animal& rhs)
+{
+	if (this->m_is_predator == rhs.m_is_predator)
+	{
+		return true;
+	}
+	return false;
+}
+
 
 const bool Creature::Animal::Get_Is_Predator() const
 {

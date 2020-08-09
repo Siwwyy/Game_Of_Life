@@ -18,6 +18,16 @@ void Creature::Animal_Manager::Add_Animal(Animal& Object)
 	Animal_Vector.emplace_back(&Object);
 }
 
+void Creature::Animal_Manager::Remove_Animal(Animal& Object)
+{
+	std::vector<Animal*>::iterator it_vec = std::find(this->Animal_Vector.begin(), this->Animal_Vector.end(), &Object);
+
+	if (it_vec != this->Animal_Vector.end())
+	{
+		this->Animal_Vector.erase(it_vec);
+	}
+}
+
 void Creature::Animal_Manager::Show_Animal() const
 {
 	for (Animal* const My_Animal: this->Animal_Vector)

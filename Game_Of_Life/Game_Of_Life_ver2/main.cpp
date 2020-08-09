@@ -14,15 +14,27 @@ int main(int argc, char* argv[])
 	using Creature::Animal;
 
 	Animal_Manager Obj;
-	Animal* Temp;
+	Animal* Temp{};
+	Animal* Temp2{};
 
 	for (std::size_t i = 0; i < 10; ++i)
 	{
-		Temp = new Animal("Ted", 0, 0, true);
+		if (i == 3)
+		{
+			Temp = new Animal("Ted", 0, 0, false);
+			Temp2 = Temp;
+		}
+		else
+		{
+			Temp = new Animal("Ted", 0, 0, true);
+		}
 		Obj.Add_Animal(*Temp);
 		Temp = nullptr;
 	}
 
+	Obj.Show_Animal();
+	Obj.Remove_Animal(*Temp2);
+	system("cls");
 	Obj.Show_Animal();
 
 	system("pause");

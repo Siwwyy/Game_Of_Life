@@ -19,6 +19,7 @@ namespace Creature
 		Animal_Manager(const Animal_Manager & Object);
 
 		void Add_Animal(Animal & Object);
+		void Remove_Animal(Animal & Object);
 		void Show_Animal() const;
 
 		Animal_Manager& operator=(const Animal_Manager& rhs);

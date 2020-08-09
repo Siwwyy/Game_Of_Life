@@ -26,6 +26,8 @@ namespace Creature
 
 		Animal& operator=(const Animal& rhs);
 
+		bool operator==(const Animal& rhs);
+
 		const bool Get_Is_Predator() const;
 
 		virtual ~Animal() {};
