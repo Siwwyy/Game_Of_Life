@@ -34,7 +34,9 @@ int main(int argc, char* argv[])
 
 	//Obj.Show_Animal();
 	//Obj.Remove_Animal(*Temp2);
-	//system("cls");
+	//std::cout << '\n';
+	//std::cout << '\n';
+	//std::cout << '\n';
 	//Obj.Show_Animal();
 
 	for (std::size_t i = 0; i < 10; ++i)
@@ -52,9 +54,12 @@ int main(int argc, char* argv[])
 		Temp = nullptr;
 	}
 
-	//Obj.Show_Animal();
+	Obj.Show_Animal();
 	Obj.Remove_Animal(Temp2);
-	//Obj.Show_Animal();
+	std::cout << '\n';
+	std::cout << '\n';
+	std::cout << '\n';
+	Obj.Show_Animal();
 
 	system("pause");
 	return EXIT_SUCCESS;
