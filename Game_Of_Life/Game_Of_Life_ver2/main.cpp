@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 		Obj.Add_Animal(*Temp);
 		Temp = nullptr;
 	}
-	
+
 	Obj.Show_Animal();
 
 	system("pause");

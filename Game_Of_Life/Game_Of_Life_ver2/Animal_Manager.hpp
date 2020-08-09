@@ -8,7 +8,7 @@
 
 namespace Creature
 {
-	class Animal;
+	class Animal;	//forward declaration
 
 	class Animal_Manager
 	{
