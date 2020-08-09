@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game_Of_Life", "Game_Of_Life\Game_Of_Life.vcxproj", "{51441D27-77D0-49B1-BEB4-B3C0844921A8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game_Of_Life_ver2", "Game_Of_Life_ver2\Game_Of_Life_ver2.vcxproj", "{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{51441D27-77D0-49B1-BEB4-B3C0844921A8}.Release|x64.Build.0 = Release|x64
 		{51441D27-77D0-49B1-BEB4-B3C0844921A8}.Release|x86.ActiveCfg = Release|Win32
 		{51441D27-77D0-49B1-BEB4-B3C0844921A8}.Release|x86.Build.0 = Release|Win32
+		{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}.Debug|x64.ActiveCfg = Debug|x64
+		{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}.Debug|x64.Build.0 = Debug|x64
+		{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}.Debug|x86.ActiveCfg = Debug|Win32
+		{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}.Debug|x86.Build.0 = Debug|Win32
+		{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}.Release|x64.ActiveCfg = Release|x64
+		{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}.Release|x64.Build.0 = Release|x64
+		{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}.Release|x86.ActiveCfg = Release|Win32
+		{58FDFFA1-D3A6-414C-8C18-9E5D339C7776}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
