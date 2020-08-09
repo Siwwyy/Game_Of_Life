@@ -71,7 +71,6 @@ bool Creature::Animal::operator==(const Animal& rhs)
 	return false;
 }
 
-
 const bool Creature::Animal::Get_Is_Predator() const
 {
 	return this->m_is_predator;

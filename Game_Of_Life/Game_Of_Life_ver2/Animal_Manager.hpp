@@ -8,7 +8,7 @@
 
 namespace Creature
 {
-	class Animal;	//forward declaration
+	class Animal;	//forward declaration for preventing to include whole file
 
 	class Animal_Manager
 	{
@@ -19,6 +19,8 @@ namespace Creature
 		Animal_Manager(const Animal_Manager & Object);
 
 		void Add_Animal(Animal & Object);
+		void Add_Animal(Animal * const Object);
+		void Remove_Animal(Animal * const Object);
 		void Remove_Animal(Animal & Object);
 		void Show_Animal() const;
 
