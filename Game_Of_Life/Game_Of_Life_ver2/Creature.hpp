@@ -31,8 +31,8 @@ namespace Creature
 		void Set_Pos_Y(const int32_t pos_y);
 
 		const std::string& Get_Name() const;
-		const int32_t Get_Pos_X() const;
-		const int32_t Get_Pos_Y() const;
+		int32_t Get_Pos_X() const;
+		int32_t Get_Pos_Y() const;
 
 		virtual void Move_Forwards() = 0;
 		virtual void Move_Backwards() = 0;

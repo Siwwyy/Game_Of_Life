@@ -25,21 +25,27 @@ void Creature::Animal_Manager::Add_Animal(Animal* const Object)
 
 void Creature::Animal_Manager::Remove_Animal(Animal* const Object)
 {
-	std::vector<Animal*>::iterator it_vec = std::find(this->Animal_Vector.begin(), this->Animal_Vector.end(), Object);
-
-	if (it_vec != this->Animal_Vector.end())
+	if (this->Animal_Vector.size() > 0)
 	{
-		this->Animal_Vector.erase(it_vec);
+		std::vector<Animal*>::iterator it_vec = std::find(this->Animal_Vector.begin(), this->Animal_Vector.end(), Object);
+
+		if (it_vec != this->Animal_Vector.end())
+		{
+			this->Animal_Vector.erase(it_vec);
+		}
 	}
 }
 
 void Creature::Animal_Manager::Remove_Animal(Animal& Object)
 {
-	std::vector<Animal*>::iterator it_vec = std::find(this->Animal_Vector.begin(), this->Animal_Vector.end(), &Object);
-
-	if (it_vec != this->Animal_Vector.end())
+	if (this->Animal_Vector.size() > 0)
 	{
-		this->Animal_Vector.erase(it_vec);
+		std::vector<Animal*>::iterator it_vec = std::find(this->Animal_Vector.begin(), this->Animal_Vector.end(), &Object);
+
+		if (it_vec != this->Animal_Vector.end())
+		{
+			this->Animal_Vector.erase(it_vec);
+		}
 	}
 }
 
@@ -49,6 +55,32 @@ void Creature::Animal_Manager::Show_Animal() const
 	{
 		My_Animal->Print();
 	}
+}
+
+void Creature::Animal_Manager::Run_Simulation()
+{
+	Animal* Temporary{};
+	Animal* Temporary_2{};
+	for (std::size_t i = 0; i < 10; ++i)
+	{
+		if (i == 3)
+		{
+			Temporary = new Animal("Ted", 0, 0, false);
+			Temporary_2 = Temporary;
+		}
+		else
+		{
+			Temporary = new Animal("Ted", 0, 0, true);
+		}
+		Add_Animal(Temporary);	//two overloaded functions, for passing by reference or at this case by pointer
+		Temporary = nullptr;
+	}
+
+	Show_Animal();
+	Remove_Animal(Temporary_2);
+	std::cout << '\n';
+	std::cout << '\n';
+	Show_Animal();
 }
 
 Creature::Animal_Manager& Creature::Animal_Manager::operator=(const Animal_Manager& rhs)

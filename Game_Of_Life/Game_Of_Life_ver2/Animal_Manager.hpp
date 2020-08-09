@@ -1,9 +1,6 @@
 #ifndef _ANIMAL_MANAGER_HPP_
 #define _ANIMAL_MANAGER_HPP_
 
-#include <string>
-#include <iostream>
-#include <cstdint>
 #include <vector>
 
 namespace Creature
@@ -23,6 +20,7 @@ namespace Creature
 		void Remove_Animal(Animal * const Object);
 		void Remove_Animal(Animal & Object);
 		void Show_Animal() const;
+		void Run_Simulation();
 
 		Animal_Manager& operator=(const Animal_Manager& rhs);
 

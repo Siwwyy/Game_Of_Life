@@ -16,7 +16,7 @@ namespace Creature
 		Animal(const std::string& name, const int32_t pos_x, const int32_t pos_y, const bool is_predator);
 		Animal(const Animal& Object);
 
-		void Set_Is_Predator(const bool is_predator);
+		void Set_Is_Predator(bool is_predator);
 
 		virtual void Move_Forwards();
 		virtual void Move_Backwards();
@@ -27,7 +27,7 @@ namespace Creature
 		Animal& operator=(const Animal& rhs);
 		bool operator==(const Animal& rhs);
 
-		const bool Get_Is_Predator() const;
+		bool Get_Is_Predator() const;
 
 		virtual ~Animal() {};
 	};

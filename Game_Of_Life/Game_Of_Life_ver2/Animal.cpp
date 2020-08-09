@@ -21,7 +21,7 @@ Creature::Animal::Animal(const Animal& Object) :
 
 }
 
-void Creature::Animal::Set_Is_Predator(const bool is_predator)
+void Creature::Animal::Set_Is_Predator(bool is_predator)
 {
 	this->m_is_predator = is_predator;
 }
@@ -71,7 +71,7 @@ bool Creature::Animal::operator==(const Animal& rhs)
 	return false;
 }
 
-const bool Creature::Animal::Get_Is_Predator() const
+bool Creature::Animal::Get_Is_Predator() const
 {
 	return this->m_is_predator;
 }

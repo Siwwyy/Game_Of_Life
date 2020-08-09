@@ -20,12 +20,12 @@ const std::string& Creature::Creature::Get_Name() const
 	return this->m_name;
 }
 
-const int32_t Creature::Creature::Get_Pos_X() const
+int32_t Creature::Creature::Get_Pos_X() const
 {
 	return this->m_pos_x;
 }
 
-const int32_t Creature::Creature::Get_Pos_Y() const
+int32_t Creature::Creature::Get_Pos_Y() const
 {
 	return this->m_pos_y;
 }
