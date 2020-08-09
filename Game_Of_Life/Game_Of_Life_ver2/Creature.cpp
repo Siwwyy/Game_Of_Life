@@ -5,12 +5,12 @@ void Creature::Creature::Set_Name(const std::string& name)
 	this->m_name = name;
 }
 
-void Creature::Creature::Set_Pos_X(const int32_t pos_x)
+void Creature::Creature::Set_Pos_X(int32_t pos_x)
 {
 	this->m_pos_x = pos_x;
 }
 
-void Creature::Creature::Set_Pos_Y(const int32_t pos_y)
+void Creature::Creature::Set_Pos_Y(int32_t pos_y)
 {
 	this->m_pos_y = pos_y;
 }

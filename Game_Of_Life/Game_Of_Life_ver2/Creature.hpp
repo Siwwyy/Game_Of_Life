@@ -27,8 +27,8 @@ namespace Creature
 	public:
 
 		void Set_Name(const std::string& name);
-		void Set_Pos_X(const int32_t pos_x);
-		void Set_Pos_Y(const int32_t pos_y);
+		void Set_Pos_X(int32_t pos_x);
+		void Set_Pos_Y(int32_t pos_y);
 
 		const std::string& Get_Name() const;
 		int32_t Get_Pos_X() const;
