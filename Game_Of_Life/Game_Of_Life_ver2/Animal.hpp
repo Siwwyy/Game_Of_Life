@@ -13,7 +13,7 @@ namespace Creature
 		bool m_is_predator;
 	public:
 		Animal();
-		Animal(const std::string& name, const int32_t pos_x, const int32_t pos_y, const bool is_predator);
+		Animal(const std::string& name, int32_t pos_x, int32_t pos_y, bool is_predator);
 		Animal(const Animal& Object);
 
 		void Set_Is_Predator(bool is_predator);

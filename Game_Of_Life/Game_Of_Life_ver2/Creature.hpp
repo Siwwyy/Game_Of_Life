@@ -17,7 +17,7 @@ namespace Creature
 
 		Creature();
 		Creature(const std::string& name);
-		Creature(const std::string& name, const int32_t pos_x, const int32_t pos_y);
+		Creature(const std::string& name, int32_t pos_x, int32_t pos_y);
 		Creature(const Creature& Object);
 
 		Creature& operator=(const Creature& rhs);

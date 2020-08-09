@@ -46,7 +46,7 @@ Creature::Creature::Creature(const std::string& name) :
 
 }
 
-Creature::Creature::Creature(const std::string& name, const int32_t pos_x, const int32_t pos_y) :
+Creature::Creature::Creature(const std::string& name, int32_t pos_x, int32_t pos_y) :
 	m_name(name),
 	m_pos_x(pos_x),
 	m_pos_y(pos_y)

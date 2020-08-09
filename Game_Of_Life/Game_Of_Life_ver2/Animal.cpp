@@ -7,7 +7,7 @@ Creature::Animal::Animal() :
 
 }
 
-Creature::Animal::Animal(const std::string& name, const int32_t pos_x, const int32_t pos_y, const bool is_predator) :
+Creature::Animal::Animal(const std::string& name, int32_t pos_x, int32_t pos_y, bool is_predator) :
 	Creature::Creature(name, pos_x, pos_y),
 	m_is_predator(is_predator)
 {
